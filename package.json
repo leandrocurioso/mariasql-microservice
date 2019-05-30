@@ -1,0 +1,47 @@
+{
+  "name": "mariasql-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./bin/www.js",
+  "scripts": {
+    "start": "node ./bin/www.js",
+    "watch": "./node_modules/.bin/nodemon ./bin/www.js",
+    "test:unit": "./node_modules/.bin/mocha ./test/**/*.js",
+    "test": "npm run test:unit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.prod.cloud.ihf/automacao_doti/SSTA/engenharia-end-user/plataformas/help-me-it-api"
+  },
+  "author": {
+    "name": "Leandro Curioso",
+    "email": "leandro.curioso@gmail.com",
+    "url": "https://git.prod.cloud.ihf/lemorcu"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "awilix": "^4.2.1",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.2",
+    "change-case": "^3.1.0",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "generic-pool": "^3.7.1",
+    "getenv": "^0.7.0",
+    "joi": "^14.3.1",
+    "mariasql": "^0.2.6",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7",
+    "swagger-jsdoc": "^3.2.9",
+    "swagger-ui-express": "^4.0.2",
+    "uuid": "^3.3.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.18.10",
+    "sinon": "^7.2.7"
+  }
+}

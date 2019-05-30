@@ -1,0 +1,1 @@
+module.exports.RepositoryService = require('./repository-service');
