@@ -1,6 +1,6 @@
 # Maria SQL Microservice
 
-Let's imagine that is possible to isolate the responsibility to connect in the database in a microservice. Ahn how? It's simple! This microservice will help you optimize your architecture simply adding this project as your core database handler and also starting, comming and rolbacking transaction without the need to explicity tell. Sometimes you havea lot of microservices and you are tired to add a module to connect to the database every time. Why not do in a single place in a optimized way with connection pool?
+Let's imagine that is possible to isolate the responsibility to connect to the database as a microservice. Ahn how? It's simple! This microservice will help you optimize your architecture simply adding this project as your core database handler and also starting, comming and rolbacking transaction without the need to explicity tell. Sometimes you have a lot of microservices and you are tired to add a module to connect to them every time right?. Why not do in a single place in a optimized way with a connection pool?
 
 **This is the whole reason behind the motivation of this project.**
 
@@ -19,7 +19,7 @@ There is an API with the uri **/v1/query** that will receive an array of queries
 - res.json
 - res.send
 
-This will auto close the scoped connection used in the enteire web request cycle. Wow nice! =)
+This will auto close the scoped connection used in the entire web request cycle. WoW nice! =)
 
 ### Query route
 The route you call to execute a query is:
@@ -63,7 +63,7 @@ The route you call to execute a query is:
 	}
 ]
 ````
-These instructions will be executed in sequence and you could also use the LAST INSERTED ID from previous INSERT in the next query bind. You can check this in this part: "id": "{{ insert1.insertId }}". When you want to use the insertion id add {{ queryKey.insertId }} to the bind param.
+These instructions will be executed in sequence and you could also use the LAST INSERTED ID from previous INSERT in the next query bind. You can check this in here: "id": "{{ insert1.insertId }}". When you want to use the insertion id add {{ queryKey.insertId }} to the bind param.
 
 **Response example:**
 
@@ -333,9 +333,10 @@ If auto trasaction is active or not. If you pass an array to **API /v1/query** w
 If you want to log the executed query and his parameters.<br/>
 
 **REPOSITORY_SERVICE_FORBIDDEN_SQL_VERBS**<br/>
-**Type:** araat<string><br/>
+**Type:** array<string><br/>
 **Default:** DROP,TRUNCATE,CREATE,ALTER<br/>
 A list of SQL verbs that will not be executed for security or permissions scope.<br/>
+
 
 ### Swagger<br/>
 
