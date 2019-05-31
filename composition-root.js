@@ -18,6 +18,7 @@ const PackageJson = require('./package.json');
 const MariaSql = require('mariasql');
 const GenericPool = require('generic-pool');
 const ChangeCase = require('change-case');
+const ExpressBasicAuth = require("express-basic-auth");
 
 const App = require('./app');
 
@@ -174,6 +175,10 @@ class CompositionRoot {
 
         this.container.register({
             getFilesRecursively: Awilix.asClass(GetFilesRecursively).singleton(),
+            expressBasicAuth: Awilix.asValue(ExpressBasicAuth({
+                users: { [this.configuration.swagger.username]: this.configuration.swagger.password },
+                challenge: true
+            })),
             connection: Awilix.asFunction(async () => await mariaSqlConnectionPool.acquire())
                 .scoped().disposer(async (connection) => mariaSqlConnectionPool.destroy(await connection))
         });

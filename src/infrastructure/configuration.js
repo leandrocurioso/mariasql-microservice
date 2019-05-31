@@ -17,13 +17,12 @@ class Configuration {
           controllerPath: this.getEnv.string('SYSTEM_CONTROLLER_PATH')
         },
         server: {
-            name: this.getEnv.string('SERVER_NAME', 'server'),
             port: this.getEnv.int('SERVER_PORT', 3000),
             xApiKey: this.getEnv.string('SERVER_X_API_KEY'),
             timezone:this.getEnv.string('SERVER_TIMEZONE', 'UTC')
         },
         logger: {
-          transports: this.getEnv.array('LOGGER_TRANSPORTS', 'string', [ 'console' ]),
+          transports: this.getEnv.array('LOGGER_TRANSPORTS', 'string', [ 'file' ]),
           logFilename: this.getEnv.string('LOGGER_LOG_FILENAME', 'application.log'),
           level: this.getEnv.string('LOGGER_LOG_LEVEL', 'info')
         },
@@ -35,7 +34,7 @@ class Configuration {
               password: this.getEnv.string("DB_MARIA_PASSWORD"),
               port: this.getEnv.int("DB_MARIA_PORT", 3306),
               multiStatements: false,
-              charset: this.getEnv.string("DB_MARIA_CHARSET", "utf8"),
+              charset: this.getEnv.string("DB_MARIA_CHARSET", "utf8mb4"),
               connTimeout: this.getEnv.int("DB_MARIA_CONNECTION_TIMEOUT", 120),
               pingInactive: this.getEnv.int("DB_MARIA_PING_INACTIVE", 60000),
               pingWaitRes: this.getEnv.int("DB_MARIA_PING_WAIT_RESPONSE", 60000),
@@ -46,11 +45,16 @@ class Configuration {
           }
         },
         controller: {
-          maximumSqlQueryLength: this.getEnv.int("CONTROLLER_MAXIMUM_SQL_QUERY_LENGTH", 1000)
+          maximumSqlQueryLength: this.getEnv.int("CONTROLLER_MAXIMUM_SQL_QUERY_LENGTH", 5000)
         },
         service: {
           repositoryAutoTransaction: Boolean(this.getEnv.int("REPOSITORY_SERVICE_AUTO_TRANSACTION", 1)),
+          repositoryLogQuery: Boolean(this.getEnv.int("REPOSITORY_SERVICE_LOG_QUERY", 1)),
           repositoryForbiddenSqlVerbs: this.getEnv.array('REPOSITORY_SERVICE_FORBIDDEN_SQL_VERBS', 'string', [ "DROP", "TRUNCATE", "CREATE", "ALTER" ])
+        },
+        swagger: {
+          username: this.getEnv.string("SWAGGER_USERNAME", 'admin'),
+          password: this.getEnv.string("SWAGGER_PASSWORD", '123456')
         }
       }; 
       process.env.NODE_ENV = config.nodeEnv;

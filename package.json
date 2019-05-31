@@ -1,7 +1,7 @@
 {
   "name": "mariasql-microservice",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple and powerful microservice to execute MariaDB queries.",
   "main": "./bin/www.js",
   "scripts": {
     "start": "node ./bin/www.js",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://git.prod.cloud.ihf/automacao_doti/SSTA/engenharia-end-user/plataformas/help-me-it-api"
+    "url": "https://github.com/leandrocurioso/mariasql-microservice"
   },
   "author": {
     "name": "Leandro Curioso",
     "email": "leandro.curioso@gmail.com",
-    "url": "https://git.prod.cloud.ihf/lemorcu"
+    "url": "https://github.com/leandrocurioso"
   },
   "license": "MIT",
   "dependencies": {
@@ -27,6 +27,7 @@
     "change-case": "^3.1.0",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "express-basic-auth": "^1.2.0",
     "generic-pool": "^3.7.1",
     "getenv": "^0.7.0",
     "joi": "^14.3.1",

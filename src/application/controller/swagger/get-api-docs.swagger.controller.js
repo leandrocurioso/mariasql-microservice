@@ -9,12 +9,14 @@ class GetApiDocsSwaggerController extends Controller {
     joi, 
     swaggerJsDoc, 
     swaggerUiExpress,
-    path
+    path,
+    expressBasicAuth
   }) { 
     super({ configuration, logger, router, joi });
     this.swaggerJsDoc = swaggerJsDoc;
     this.swaggerUiExpress = swaggerUiExpress;
     this.path = path;
+    this.expressBasicAuth = expressBasicAuth;
   }
 
   proxy() {
@@ -29,7 +31,9 @@ class GetApiDocsSwaggerController extends Controller {
             email: this.configuration.packageJson.author.email,
             url: this.configuration.packageJson.author.url
           },
-          license: this.configuration.packageJson.license
+          license: {
+            name: this.configuration.packageJson.license
+          }
         },
         host: `localhost:${this.configuration.server.port}`,
         basePath: '/'
@@ -47,6 +51,7 @@ class GetApiDocsSwaggerController extends Controller {
       httpVerb: 'USE',
       uri: '/api-docs',
       middlewares: [
+        this.expressBasicAuth,
         this.swaggerUiExpress.serve, 
         this.swaggerUiExpress.setup(this.swaggerJsDoc(options))
       ],
@@ -66,7 +71,7 @@ class GetApiDocsSwaggerController extends Controller {
   }
 
   async route(req, res, next) {
-    return await res.status(200).end(String.empty);
+    return await res.status(20).end(String.empty);
   }
 
 }

@@ -139,7 +139,9 @@ class Repository {
             if (isTransaction) await this.query("START TRANSACTION;");
             for(const query of queries) {
                 const bindedParams = this.bindParam(query.params, resultsBag);
-                this.logger.info({ xRequestId, sql: query.sql, bindedParams });
+                if (this.configuration.service.repositoryLogQuery) {
+                    this.logger.info({ xRequestId, sql: query.sql, bindedParams });
+                }
                 let resultSet = await this.query(query.sql, bindedParams);
                 resultSet = this.sanitizeResult(query.parser, query.queryVerb, resultSet, query.onlyFirst);
                 resultsBag.push({ key: query.key, resultSet });
@@ -147,8 +149,10 @@ class Repository {
             if (isTransaction) await this.query("COMMIT;");
             return resultsBag.map(result => ({ [result.key]: result.resultSet }));
         } catch(err) {
-            this.logger.error({ xRequestId, message: err.message, stack: err.stack });
             if (isTransaction) await this.query("ROLLBACK;");
+            if (this.configuration.service.repositoryLogQuery) {
+                this.logger.error({ xRequestId, message: err.message, stack: err.stack });
+            }
             throw err;
         }
     }
