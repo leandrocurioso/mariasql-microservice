@@ -9,12 +9,14 @@ class GetApiDocsSwaggerController extends Controller {
     joi, 
     swaggerJsDoc, 
     swaggerUiExpress,
-    path
+    path,
+    expressBasicAuth
   }) { 
     super({ configuration, logger, router, joi });
     this.swaggerJsDoc = swaggerJsDoc;
     this.swaggerUiExpress = swaggerUiExpress;
     this.path = path;
+    this.expressBasicAuth = expressBasicAuth;
   }
 
   proxy() {
@@ -49,6 +51,7 @@ class GetApiDocsSwaggerController extends Controller {
       httpVerb: 'USE',
       uri: '/api-docs',
       middlewares: [
+        this.expressBasicAuth,
         this.swaggerUiExpress.serve, 
         this.swaggerUiExpress.setup(this.swaggerJsDoc(options))
       ],
