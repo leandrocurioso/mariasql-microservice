@@ -20,6 +20,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@timberio/node": "^0.33.0",
+    "@timberio/winston": "^0.33.0",
     "awilix": "^4.2.1",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",

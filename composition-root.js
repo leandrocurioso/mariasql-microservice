@@ -19,6 +19,8 @@ const MariaSql = require('mariasql');
 const GenericPool = require('generic-pool');
 const ChangeCase = require('change-case');
 const ExpressBasicAuth = require("express-basic-auth");
+const { Timber } = require('@timberio/node');
+const { TimberTransport } = require('@timberio/winston');
 
 const App = require('./app');
 
@@ -87,7 +89,9 @@ class CompositionRoot {
             childProcess: Awilix.asValue(ChildProcess),
             mariaSql: Awilix.asValue(MariaSql),
             genericPool: Awilix.asValue(GenericPool),
-            changeCase: Awilix.asValue(ChangeCase)
+            changeCase: Awilix.asValue(ChangeCase),
+            timber: Awilix.asValue(Timber),
+            timberTransport: Awilix.asValue(TimberTransport)
         });
     }
 
@@ -163,7 +167,10 @@ class CompositionRoot {
                 configuration: this.configuration,
                 path: this.container.resolve('path'),
                 winston: this.container.resolve('winston'),
-                rootDir: this.rootDir
+                rootDir: this.rootDir,
+                timberTransport: this.container.resolve('timberTransport'),
+                timber: this.container.resolve('timber'),
+                appName: this.configuration.packageJson.name
             }).getInstance())
         });
 

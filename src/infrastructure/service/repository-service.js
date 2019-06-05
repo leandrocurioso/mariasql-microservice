@@ -150,9 +150,7 @@ class Repository {
             return resultsBag.map(result => ({ [result.key]: result.resultSet }));
         } catch(err) {
             if (isTransaction) await this.query("ROLLBACK;");
-            if (this.configuration.service.repositoryLogQuery) {
-                this.logger.error({ xRequestId, message: err.message, stack: err.stack });
-            }
+            this.logger.error({ xRequestId, message: err.message, stack: err.stack });
             throw err;
         }
     }

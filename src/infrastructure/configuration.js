@@ -24,7 +24,9 @@ class Configuration {
         logger: {
           transports: this.getEnv.array('LOGGER_TRANSPORTS', 'string', [ 'file' ]),
           logFilename: this.getEnv.string('LOGGER_LOG_FILENAME', 'application.log'),
-          level: this.getEnv.string('LOGGER_LOG_LEVEL', 'info')
+          level: this.getEnv.string('LOGGER_LOG_LEVEL', 'info'),
+          timberSourceId: this.getEnv.int('LOGGER_TIMBER_SOURCE_ID'),
+          timberOrganizationKey: this.getEnv.string('LOGGER_TIMBER_ORGANIZATION_KEY')
         },
         database: {
           maria: {
