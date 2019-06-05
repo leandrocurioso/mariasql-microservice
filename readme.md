@@ -205,9 +205,9 @@ The configuration is in the **.env** file located in the root folder.
 
 ### System
 
-**SYSTEM_CONTROLLER_PATH**
-**Type:** string
-**Default:** ./src/application/controller
+**SYSTEM_CONTROLLER_PATH**<br/>
+**Type:** string<br/>
+**Default:** ./src/application/controller<br/>
 The controller folder path. Basically you should not change this value unless you know what you are doing.
 
 ### Server
@@ -239,8 +239,8 @@ The application timezone, this is a specific environment variable for process.en
 **LOGGER_TRANSPORTS**<br/>
 **Type:** array<string><br/>
 **Default:** file<br/>
-**Possible values:** console | file<br/>
-The transport layers for [Winston](https://github.com/winstonjs/winston) logger module, basically where the logs will be dispached, it is an array of strings so if you want to log it in console and file together use it with comma separation.<br/>
+**Possible values:** console | file | timber<br/>
+The transport layers for [Winston](https://github.com/winstonjs/winston) logger module, basically where the logs will be dispached, it is an array of strings so if you want to log it in console and file together use it with comma separation. [Timber](https://app.timber.io) is a cloud log provider, you need to create an account to use it and configure the parameters. [ORGANIZATION_KEY, SOURCE_ID] <br/>
 
 **LOGGER_LOG_FILENAME**<br/>
 **Type:** string<br/>
@@ -250,8 +250,16 @@ The filepath location for LOGGER_TRANSPORTS when file transport is active.<br/>
 **LOGGER_LOG_LEVEL**<br/>
 **Type:** string<br/>
 **Default:** info<br/>
-**Possible values:** debug | file | log | info | warn | error<br/>
+**Possible values:** debug | file | silly | info | warn | error<br/>
 The log level.<br/>
+
+**LOGGER_TIMBER_ORGANIZATION_KEY**<br/>
+**Type:** string<br/>
+Api key of you Timber account<br/>
+
+**LOGGER_TIMBER_SOURCE_ID**<br/>
+**Type:** integer<br/>
+Source id of you Timber account<br/>
 
 ### MariaDB<br/>
 
@@ -337,7 +345,6 @@ If you want to log the executed query and his parameters.<br/>
 **Default:** DROP,TRUNCATE,CREATE,ALTER<br/>
 A list of SQL verbs that will not be executed for security or permissions scope.<br/>
 
-
 ### Swagger<br/>
 
 **SWAGGER_USERNAME**<br/>
@@ -352,4 +359,3 @@ The user password to read the aoi docs.<br/>
 
 # Feedbacks / Contributions
 If you want to give feedback or contribute to this project please contact me: [leandro.curioso@gmail.com](mailto:leandro.curioso@gmail.com)
-

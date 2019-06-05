@@ -24,7 +24,7 @@ class Server {
         this.express.app.set('port', port);
         this.server = this.http.createServer(this.express.app);
         this.server.listen(port);
-        this.server.on('error', this.getOnError());
+        this.server.on('error', this.getOnError(port));
         this.server.on('listening', this.getOnListening());
     }
 
@@ -45,7 +45,7 @@ class Server {
         };
     }
 
-    getOnError() {
+    getOnError(port) {
         return error => {
             if (error.syscall !== 'listen') throw error;
             const bind = typeof port === 'string' ?
@@ -70,13 +70,9 @@ class Server {
 
 let server;
 try {
-    const compositionRoot = new CompositionRoot({
-        environmentFilename: '.env'
-    });
+    const compositionRoot = new CompositionRoot({ environmentFilename: '.env' });
     compositionRoot.setContainer().registerDependency();
-    server = new Server({
-        compositionRoot
-    });
+    server = new Server({ compositionRoot });
     server.start();
 } catch (err) {
     console.log(err);
