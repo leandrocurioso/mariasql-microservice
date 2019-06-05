@@ -176,7 +176,7 @@ Follow this steps but first! For each parameter go to **Environment Configuratio
 
 ### Instructions to run the project
 
-In the temrinal browser to the project folder and type:
+In the temrinal browse to the project folder and type:
 
 1 - To install the dependencies
 `````
@@ -270,7 +270,7 @@ The database host.<br/>
 
 **DB_MARIA_DATABASE**<br/>
 **Type:** string<br/>
-**Default:** db<br/>
+**Default:** webapi<br/>
 The database name.<br/>
 
 **DB_MARIA_USER**<br/>
